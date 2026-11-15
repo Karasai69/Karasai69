@@ -25,11 +25,27 @@ Personal finance tracker where you type expenses in plain text — *"taxi 1 200,
 
 ---
 
+### 💈 Second project — [Barber Booking](https://github.com/Karasai69/barber-booking)
+
+<a href="https://github.com/Karasai69/barber-booking"><img src="https://raw.githubusercontent.com/Karasai69/barber-booking/main/docs/screenshots/admin-schedule.png" alt="Barber Booking: a barber's day on a time axis next to a barber pole" width="100%"></a>
+
+Online booking for a barbershop: clients book through a Telegram bot, barbers mark visits in a web dashboard, the admin sees load and revenue. Built to learn what the first project didn't cover: background jobs, roles and concurrency.
+
+- **No double booking, enforced by the database:** a PostgreSQL `EXCLUDE` constraint on overlapping time ranges; a test fires 10 parallel requests at one slot and exactly one wins
+- **Background jobs:** Celery + Redis send reminders 2 hours before a visit and a daily report to the admin, without duplicates
+- **Telegram bot:** aiogram 3 — pick a service, barber and free slot, see and cancel your bookings
+- **Roles:** admin and barber accounts, JWT for the API and in an HttpOnly cookie for the dashboard
+- **DevOps:** Docker Compose with 7 services, GitHub Actions (lint, migration check, tests on PostgreSQL, image build)
+
+**[Code & README](https://github.com/Karasai69/barber-booking)** · **[Design decisions](https://github.com/Karasai69/barber-booking/blob/main/DECISIONS.md)**
+
+---
+
 ### 🛠 Tech
 
 **Languages:** Python · C++ · JavaScript · SQL
-**Backend:** FastAPI · SQLAlchemy · Alembic · Pydantic · REST APIs
-**Databases:** PostgreSQL · SQLite
+**Backend:** FastAPI · SQLAlchemy · Alembic · Pydantic · REST APIs · Celery · aiogram
+**Databases:** PostgreSQL · SQLite · Redis
 **Tools:** Git · Docker · GitHub Actions · Linux · PyCharm · Google Colab
 
 ### 📫 Contact
